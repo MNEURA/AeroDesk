@@ -7,13 +7,20 @@ package gui;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.CardLayout;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 /**
  *
  * @author mneura
  */
 public class AdminDashboard extends javax.swing.JFrame {
+
+    private DashboardPanel dashboardPanel = null;
 
     /**
      * Creates new form AdminDashboard
@@ -26,9 +33,49 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void init() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         brandPanel.putClientProperty(FlatClientProperties.STYLE, "arc:10");
+        brandPanel.setBackground(new Color(255, 255, 255, 25));
         sidebarPanel.putClientProperty(FlatClientProperties.STYLE, "arc:10");
+        sidebarPanel.setBackground(new Color(255, 255, 255, 25));
         topHeaderPanel.putClientProperty(FlatClientProperties.STYLE, "arc:10");
-        mainContainerPanel.putClientProperty(FlatClientProperties.STYLE, "arc:10");
+        topHeaderPanel.setBackground(new Color(255, 255, 255, 25));
+        container.putClientProperty(FlatClientProperties.STYLE, "arc:10");
+
+        dashboardBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
+        dashboardBTN.setFocusPainted(false);
+        flightScheduleBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
+        flightScheduleBTN.setFocusPainted(false);
+        editFlightBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
+        editFlightBTN.setFocusPainted(false);
+        assignAircraftBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
+        assignAircraftBTN.setFocusPainted(false);
+        assignGateBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
+        assignGateBTN.setFocusPainted(false);
+        manageUsersBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
+        manageUsersBTN.setFocusPainted(false);
+        logOutBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
+        logOutBTN.setFocusPainted(false);
+
+        container.setLayout(new CardLayout());
+        loadDashboard();
+    }
+
+    private void loadDashboard() {
+        dashboardPanel = new DashboardPanel(); // create once
+        switchPanel(dashboardPanel, "dashboard");
+    }
+
+    private void switchPanel(JPanel panel, String name) {
+        if (container.getComponentZOrder(panel) == -1) {
+            container.add(panel, name);
+        }
+        CardLayout cl = (CardLayout) container.getLayout();
+        cl.show(container, name);
+        refreshUI();
+    }
+
+    private void refreshUI() {
+        container.revalidate();
+        container.repaint();
     }
 
     /**
@@ -45,22 +92,23 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         sidebarPanel = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        mainContainerPanel = new javax.swing.JPanel();
+        dashboardBTN = new javax.swing.JButton();
+        flightScheduleBTN = new javax.swing.JButton();
+        assignAircraftBTN = new javax.swing.JButton();
+        editFlightBTN = new javax.swing.JButton();
+        manageUsersBTN = new javax.swing.JButton();
+        assignGateBTN = new javax.swing.JButton();
+        logOutBTN = new javax.swing.JButton();
+        container = new javax.swing.JPanel();
         topHeaderPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("AeroDesk - Admin dashboard");
+        setTitle("AeroDesk - Admininstrator dashboard");
         setResizable(false);
 
-        framePanel.setBackground(new java.awt.Color(51, 51, 51));
+        framePanel.setBackground(new java.awt.Color(0, 0, 0));
 
         brandPanel.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -85,84 +133,78 @@ public class AdminDashboard extends javax.swing.JFrame {
         );
         brandPanelLayout.setVerticalGroup(
             brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(brandPanelLayout.createSequentialGroup()
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, brandPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(brandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(brandPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         sidebarPanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        jButton8.setBackground(new java.awt.Color(204, 204, 204));
-        jButton8.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dashboard.png"))); // NOI18N
-        jButton8.setText("Dashboard");
-        jButton8.setToolTipText("Dashboard");
-        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        jButton9.setBackground(new java.awt.Color(204, 204, 204));
-        jButton9.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/schedule.png"))); // NOI18N
-        jButton9.setText("Flight Schedule");
-        jButton9.setToolTipText("Flight Schedule");
-        jButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        dashboardBTN.setBackground(new java.awt.Color(102, 0, 255));
+        dashboardBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dashboard.png"))); // NOI18N
+        dashboardBTN.setText("Dashboard");
+        dashboardBTN.setToolTipText("Dashboard");
+        dashboardBTN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        dashboardBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                dashboardBTNActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(204, 204, 204));
-        jButton10.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flight.png"))); // NOI18N
-        jButton10.setText("Assign Aircraft");
-        jButton10.setToolTipText("Assign Aircraft");
-        jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        flightScheduleBTN.setBackground(new java.awt.Color(102, 0, 255));
+        flightScheduleBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/schedule.png"))); // NOI18N
+        flightScheduleBTN.setText("Flight Schedule");
+        flightScheduleBTN.setToolTipText("Flight Schedule");
+        flightScheduleBTN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        flightScheduleBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                flightScheduleBTNActionPerformed(evt);
             }
         });
 
-        jButton11.setBackground(new java.awt.Color(204, 204, 204));
-        jButton11.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
-        jButton11.setText("Edit Flight Details");
-        jButton11.setToolTipText("Edit Flight Details");
-        jButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        jButton12.setBackground(new java.awt.Color(204, 204, 204));
-        jButton12.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/users.png"))); // NOI18N
-        jButton12.setText("Manage Users");
-        jButton12.setToolTipText("Manage User");
-        jButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        assignAircraftBTN.setBackground(new java.awt.Color(102, 0, 255));
+        assignAircraftBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/flight.png"))); // NOI18N
+        assignAircraftBTN.setText("Assign Aircraft");
+        assignAircraftBTN.setToolTipText("Assign Aircraft");
+        assignAircraftBTN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        assignAircraftBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                assignAircraftBTNActionPerformed(evt);
             }
         });
 
-        jButton13.setBackground(new java.awt.Color(204, 204, 204));
-        jButton13.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gate.png"))); // NOI18N
-        jButton13.setText("Assign Gate");
-        jButton13.setToolTipText("Assign Gate");
-        jButton13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        editFlightBTN.setBackground(new java.awt.Color(102, 0, 255));
+        editFlightBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
+        editFlightBTN.setText("Edit Flight Details");
+        editFlightBTN.setToolTipText("Edit Flight Details");
+        editFlightBTN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jButton14.setBackground(new java.awt.Color(204, 204, 204));
-        jButton14.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
-        jButton14.setText("LogOut");
-        jButton14.setToolTipText("LogOut");
-        jButton14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        manageUsersBTN.setBackground(new java.awt.Color(102, 0, 255));
+        manageUsersBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/users.png"))); // NOI18N
+        manageUsersBTN.setText("Manage Users");
+        manageUsersBTN.setToolTipText("Manage User");
+        manageUsersBTN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        manageUsersBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                manageUsersBTNActionPerformed(evt);
+            }
+        });
+
+        assignGateBTN.setBackground(new java.awt.Color(102, 0, 255));
+        assignGateBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gate.png"))); // NOI18N
+        assignGateBTN.setText("Assign Gate");
+        assignGateBTN.setToolTipText("Assign Gate");
+        assignGateBTN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        logOutBTN.setBackground(new java.awt.Color(102, 0, 255));
+        logOutBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
+        logOutBTN.setText("LogOut");
+        logOutBTN.setToolTipText("LogOut");
+        logOutBTN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        logOutBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutBTNActionPerformed(evt);
             }
         });
 
@@ -173,45 +215,45 @@ public class AdminDashboard extends javax.swing.JFrame {
             .addGroup(sidebarPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(sidebarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dashboardBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(flightScheduleBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editFlightBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                    .addComponent(assignAircraftBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(assignGateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageUsersBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logOutBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         sidebarPanelLayout.setVerticalGroup(
             sidebarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidebarPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dashboardBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(flightScheduleBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editFlightBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(assignAircraftBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(assignGateBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manageUsersBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logOutBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
 
-        mainContainerPanel.setBackground(new java.awt.Color(0, 0, 0));
+        container.setBackground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout mainContainerPanelLayout = new javax.swing.GroupLayout(mainContainerPanel);
-        mainContainerPanel.setLayout(mainContainerPanelLayout);
-        mainContainerPanelLayout.setHorizontalGroup(
-            mainContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
+        container.setLayout(containerLayout);
+        containerLayout.setHorizontalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 564, Short.MAX_VALUE)
         );
-        mainContainerPanelLayout.setVerticalGroup(
-            mainContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        containerLayout.setVerticalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 441, Short.MAX_VALUE)
         );
 
@@ -221,12 +263,19 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel3.setToolTipText("Notifications");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Administrator Dashboard");
+
         javax.swing.GroupLayout topHeaderPanelLayout = new javax.swing.GroupLayout(topHeaderPanel);
         topHeaderPanel.setLayout(topHeaderPanelLayout);
         topHeaderPanelLayout.setHorizontalGroup(
             topHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topHeaderPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(15, 15, 15))
         );
@@ -236,6 +285,10 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(topHeaderPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout framePanelLayout = new javax.swing.GroupLayout(framePanel);
@@ -249,7 +302,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(sidebarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(framePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(topHeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
@@ -262,7 +315,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(topHeaderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(framePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sidebarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
@@ -282,21 +335,29 @@ public class AdminDashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void flightScheduleBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flightScheduleBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_flightScheduleBTNActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void assignAircraftBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignAircraftBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_assignAircraftBTNActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void manageUsersBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUsersBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_manageUsersBTNActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void logOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_logOutBTNActionPerformed
+
+    private void dashboardBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBTNActionPerformed
+        // TODO add your handling code here:
+        if (dashboardPanel == null) {
+            dashboardPanel = new DashboardPanel();
+        }
+        switchPanel(dashboardPanel, "dashboard");
+    }//GEN-LAST:event_dashboardBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,19 +374,20 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton assignAircraftBTN;
+    private javax.swing.JButton assignGateBTN;
     private javax.swing.JPanel brandPanel;
+    private javax.swing.JPanel container;
+    private javax.swing.JButton dashboardBTN;
+    private javax.swing.JButton editFlightBTN;
+    private javax.swing.JButton flightScheduleBTN;
     private javax.swing.JPanel framePanel;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel mainContainerPanel;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton logOutBTN;
+    private javax.swing.JButton manageUsersBTN;
     private javax.swing.JPanel sidebarPanel;
     private javax.swing.JPanel topHeaderPanel;
     // End of variables declaration//GEN-END:variables

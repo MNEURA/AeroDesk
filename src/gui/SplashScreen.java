@@ -86,7 +86,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jLabel3.setText("\"AeroDesk – Streamlining Airport Operations.\"");
 
         jProgressBar1.setBackground(new java.awt.Color(51, 51, 51));
-        jProgressBar1.setForeground(new java.awt.Color(255, 153, 0));
+        jProgressBar1.setForeground(new java.awt.Color(102, 0, 255));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N

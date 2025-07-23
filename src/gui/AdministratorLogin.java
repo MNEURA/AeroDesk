@@ -5,6 +5,7 @@
 package gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.BorderFactory;
 import javax.swing.SwingWorker;
 
 /**
@@ -18,6 +19,8 @@ public class AdministratorLogin extends javax.swing.JFrame {
      */
     public AdministratorLogin() {
         initComponents();
+        loginBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
+        loginBTN.setFocusPainted(false);
     }
 
     /**
@@ -38,7 +41,7 @@ public class AdministratorLogin extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        loginBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AeroDesk - Admin Login");
@@ -89,7 +92,8 @@ public class AdministratorLogin extends javax.swing.JFrame {
         jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
 
-        jButton1.setText("Login");
+        loginBTN.setBackground(new java.awt.Color(102, 0, 255));
+        loginBTN.setText("Login");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,7 +122,7 @@ public class AdministratorLogin extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton1))
+                                        .addComponent(loginBTN))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -147,7 +151,7 @@ public class AdministratorLogin extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(loginBTN)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -186,7 +190,6 @@ public class AdministratorLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -196,5 +199,6 @@ public class AdministratorLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton loginBTN;
     // End of variables declaration//GEN-END:variables
 }
