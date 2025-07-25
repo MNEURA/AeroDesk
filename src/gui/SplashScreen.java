@@ -40,7 +40,7 @@ public class SplashScreen extends javax.swing.JFrame {
             @Override
             protected void done() {
                 dispose();
-                new AdminDashboard().setVisible(true);
+                new Redirector().setVisible(true);
             }
         }.execute();
         

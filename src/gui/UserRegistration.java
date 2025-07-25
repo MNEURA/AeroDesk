@@ -4,6 +4,7 @@
  */
 package gui;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.BorderFactory;
 import javax.swing.SwingWorker;
@@ -19,8 +20,7 @@ public class UserRegistration extends javax.swing.JFrame {
      */
     public UserRegistration() {
         initComponents();
-        registerBTN.setBorder(BorderFactory.createLineBorder(new java.awt.Color(102, 0, 255), 2));
-        registerBTN.setFocusPainted(false);
+        registerBTN.putClientProperty(FlatClientProperties.STYLE, "arc:10");
     }
 
     /**
@@ -98,6 +98,7 @@ public class UserRegistration extends javax.swing.JFrame {
 
         registerBTN.setBackground(new java.awt.Color(102, 0, 255));
         registerBTN.setText("Register");
+        registerBTN.setBorder(null);
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N

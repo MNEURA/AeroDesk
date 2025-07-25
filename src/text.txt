@@ -1,0 +1,44 @@
+CREATE DATABASE aerodeskpro
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE aerodeskpro;
+
+CREATE TABLE flight (
+    flight_id INT AUTO_INCREMENT PRIMARY KEY,           
+    flight_number VARCHAR(10) NOT NULL,                 
+    airline_code VARCHAR(10) NOT NULL,                  
+    origin_airport VARCHAR(100) NOT NULL,               
+    destination_airport VARCHAR(100) NOT NULL,         
+    departure_gate VARCHAR(10),
+    departure_time DATETIME NOT NULL,
+    arrival_time DATETIME NOT NULL,
+    passenger_seat_count INT NOT NULL,
+    pilot VARCHAR(100),
+    copilot VARCHAR(100),
+    ticket_price DECIMAL(10, 2) NOT NULL,
+    aircraft_id INT,
+    created_at DATETIME NOT NULL,
+    last_updated_at DATETIME NOT NULL,
+    status_id INT,
+    CONSTRAINT fk_aircraft FOREIGN KEY (aircraft_id) REFERENCES aircraft(aircraft_id),
+    CONSTRAINT fk_aircraft FOREIGN KEY (status_id) REFERENCES status(status_id)
+);
+
+CREATE TABLE aircraft (
+    aircraft_id INT AUTO_INCREMENT PRIMARY KEY,
+    tail_number VARCHAR(20) UNIQUE NOT NULL,
+    airline_code VARCHAR(10) NOT NULL,
+    model VARCHAR(50),
+    manufacturer VARCHAR(50),
+    manufacture_year VARCHAR(4),
+    seat_capacity INT,
+    range_km INT,
+    engine_type VARCHAR(50),
+    aircraft_type VARCHAR(30),
+    status VARCHAR(20) DEFAULT 'Active',
+    last_maintenance DATETIME,
+    next_maintenance DATETIME,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL
+);
